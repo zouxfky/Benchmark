@@ -11,7 +11,7 @@ SCALE = {"comment": 15347.6069, "concept": 1165.5795, "course": 6.9122, "problem
 resources = ['concept', 'course', 'problem', 'school', 'teacher', 'video', 'course_teacher', 'course_school',
              'course_field', 'concept_course', 'concept_problem', 'concept_video', 'concept_prerequisites']
 RADIX = 547
-ratio = 0.0025
+ratio = 0.05
 RESULT_PATH = "result"
 RELATION_PATH = "/relation"
 DOCUMENT_PATH = "/document"
@@ -84,7 +84,7 @@ if __name__ == "__main__":
             if everyKey in resources:
                 SCALE[everyKey] = SCALE[everyKey] * RADIX * new_ratio
             else:
-                SCALE[everyKey] = SCALE[everyKey] / SCALE["user"] * new_ratio * 5000
+                SCALE[everyKey] = SCALE[everyKey] / SCALE["user"] * args.SF * 5000
     try:
         if not os.path.exists(RESULT_PATH):
             os.mkdir(RESULT_PATH)
