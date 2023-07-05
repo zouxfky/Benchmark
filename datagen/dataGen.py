@@ -9,8 +9,10 @@ CONCEPT_HEADER = ['concept_id', 'concept_name', 'context']
 COURSE_HEADER = ['course_id', 'course_name', 'prerequisites', 'about', 'resource']
 OTHER_HEADER = ['other_id', 'type', 'content']
 OTHER_TYPE = ['zhihu', 'baike', 'wiki']
-PAPER_HEADER = ['paper_id', 'title', 'abstract', 'doi', 'lang', 'num_citation', 'pages', 'score', 'sourcetype', 'urls', 'year']
-PROBLEM_HEADER = ['problem_id', 'content', 'option', 'answer', 'score', 'type', 'typetext', 'location', 'context_id', 'language']
+PAPER_HEADER = ['paper_id', 'title', 'abstract', 'doi', 'lang', 'num_citation', 'pages', 'score', 'sourcetype', 'urls',
+                'year']
+PROBLEM_HEADER = ['problem_id', 'content', 'option', 'answer', 'score', 'type', 'typetext', 'location', 'context_id',
+                  'language']
 REPLY_HEADER = ['reply_id', 'text', 'create_time']
 TEACHER_HEADER = ['teacher_id', 'name', 'about', 'job_title', 'org_name']
 USER_HEADER = ['user_id', 'name', 'gender', 'school', 'year_of_birth']
@@ -121,7 +123,7 @@ def courseTeacherGen(dir, course, teacher):
 def courseFiledGen(dir, course, field):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(["course_id", "filed_list"])
         for row in course.iterrows():
             count = random.randint(1, 3)
             data = []
