@@ -1,8 +1,8 @@
 import csv
 import uuid
 import random
-import numpy as np
 import util.dataDictionary as dataDictionary
+import numpy as np
 
 COMMENT_HEADER = ['comment_id', 'text', 'create_time']
 CONCEPT_HEADER = ['concept_id', 'concept_name', 'context']
@@ -11,8 +11,7 @@ OTHER_HEADER = ['other_id', 'type', 'content']
 OTHER_TYPE = ['zhihu', 'baike', 'wiki']
 PAPER_HEADER = ['paper_id', 'title', 'abstract', 'doi', 'lang', 'num_citation', 'pages', 'score', 'sourcetype', 'urls',
                 'year']
-PROBLEM_HEADER = ['problem_id', 'content', 'option', 'answer', 'score', 'type', 'typetext', 'location', 'context_id',
-                  'language']
+PROBLEM_HEADER = ['problem_id', 'content', 'option', 'answer', 'score', 'type', 'typetext', 'language']
 REPLY_HEADER = ['reply_id', 'text', 'create_time']
 TEACHER_HEADER = ['teacher_id', 'name', 'about', 'job_title', 'org_name']
 USER_HEADER = ['user_id', 'name', 'gender', 'school', 'year_of_birth']
@@ -62,6 +61,8 @@ def problemGen(dir, row_data, scale):
         writer.writerow(PROBLEM_HEADER)
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
+            if np.isnan(data[4]):
+                data[4] = 1.0
             data[0] = uuid.uuid1()
             writer.writerow(data)
             total = total + 1
