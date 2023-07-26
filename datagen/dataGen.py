@@ -128,12 +128,9 @@ def courseFiledGen(dir, course, field):
         for row in course.iterrows():
             count = random.randint(1, 3)
             data = []
-            if count == 1:
-                writer.writerow([row[1]["course_id"], dataDictionary.getRandomData(field)[1]])
-            else:
-                for i in range(count):
-                    data.append(dataDictionary.getRandomData(field)[1])
-                writer.writerow([row[1]["course_id"], data])
+            for i in range(count):
+                data.append(dataDictionary.getRandomData(field)[1])
+            writer.writerow([row[1]["course_id"], data])
 
 
 def courseCommentGen(dir, course, comment):
@@ -152,16 +149,11 @@ def userCourseGen(dir, user, course):
         for row in user.iterrows():
             count = random.randint(1, 8)
             data = []
-            if count == 1:
+            for i in range(count):
                 time = dataDictionary.getRandomTime()
-                writer.writerow([row[1]["user_id"], {"course_id": dataDictionary.getRandomData(course)[0],
-                                                     "enroll_time": str(time)}])
-            else:
-                for i in range(count):
-                    time = dataDictionary.getRandomTime()
-                    data.append({"course_id": dataDictionary.getRandomData(course)[0],
-                                 "enroll_time": str(time)})
-                writer.writerow([row[1]["user_id"], data])
+                data.append({"course_id": dataDictionary.getRandomData(course)[0],
+                             "enroll_time": str(time)})
+            writer.writerow([row[1]["user_id"], data])
 
 
 def userProblemGen(dir, user, problem):
@@ -171,14 +163,7 @@ def userProblemGen(dir, user, problem):
         for row in user.iterrows():
             count = random.randint(0, 60)
             problem_list = []
-            if count == 1:
-                data = dataDictionary.getRandomData(problem)
-                writer.writerow([row[1]["user_id"], {"problem_id": data[0],
-                                                     "is_correct": random.randint(0, 1),
-                                                     "attempts": random.randint(1, 50),
-                                                     "score": random.randint(0, 100),
-                                                     "submit_time": str(dataDictionary.getRandomTime())}])
-            elif count > 1:
+            if count >= 1:
                 for i in range(count):
                     data = dataDictionary.getRandomData(problem)
                     problem_list.append({"problem_id": data[0],
@@ -204,28 +189,16 @@ def userVideoGen(dir, user, video):
                 data = dataDictionary.getRandomData(video)
                 start_time = dataDictionary.getRandomTime()
                 time = start_time
-                if segment_count == 1:
+                for y in range(segment_count):
                     start_point = round(random.uniform(0, 2000), 1)
                     end_point = round(start_point + random.uniform(0, 200))
-                    segment_list = {"start_point": start_point,
-                                    "end_point": end_point,
-                                    "speed": random.choice([0.5, 1.0, 1.5, 2.0]),
-                                    "local_start_time": time.timestamp()}
-                else:
-                    for y in range(segment_count):
-                        start_point = round(random.uniform(0, 2000), 1)
-                        end_point = round(start_point + random.uniform(0, 200))
-                        if y != 0:
-                            time = dataDictionary.getNextTime(time)
-                        segment_list.append({"start_point": start_point,
-                                             "end_point": end_point,
-                                             "speed": random.choice([0.5, 1.0, 1.5, 2.0]),
-                                             "local_start_time": time.timestamp()})
-                if video_count == 1:
-                    video_list = {"video_id": data[0], "seq": segment_list}
-                else:
-                    video_list.append({"video_id": data[0],
-                                       "seq": segment_list})
+                    if y != 0:
+                        time = dataDictionary.getNextTime(time)
+                    segment_list.append({"start_point": start_point,
+                                         "end_point": end_point,
+                                         "speed": random.choice([0.5, 1.0, 1.5, 2.0]),
+                                         "local_start_time": time.timestamp()})
+                    video_list.append({"video_id": data[0], "seq": segment_list})
             writer.writerow([row[1]["user_id"], video_list])
 
 
