@@ -115,7 +115,7 @@ def videoGen(dir, row_data, scale):
 def courseTeacherGen(dir, course, teacher):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['course_id', 'teacher_id'])
         for row in course.iterrows():
             data = dataDictionary.getRandomData(teacher)
             writer.writerow([row[1]["course_id"], data[0]])
@@ -136,7 +136,7 @@ def courseFiledGen(dir, course, field):
 def courseCommentGen(dir, course, comment):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['course_id', 'comment_id'])
         for row in comment.iterrows():
             data = dataDictionary.getRandomData(course)
             writer.writerow([data[0], row[1]["comment_id"]])
@@ -179,7 +179,7 @@ def userVideoGen(dir, user, video):
         writer = csv.writer(a)
         writer.writerow(USER_VIDEO_HEADER)
         for row in user.iterrows():
-            video_count = random.randint(0, 7)
+            video_count = random.randint(1, 7)
             segment_count = random.randint(1, 5)
             segment_list = []
             video_list = []
@@ -205,7 +205,7 @@ def userVideoGen(dir, user, video):
 def userCommentGen(dir, user, comment):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['user_id', 'comment_id'])
         for row in comment.iterrows():
             data = dataDictionary.getRandomData(user)
             writer.writerow([data[0], row[1]["comment_id"]])
@@ -214,7 +214,7 @@ def userCommentGen(dir, user, comment):
 def userReplyGen(dir, user, reply):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['user_id', 'reply_id'])
         for row in reply.iterrows():
             data = dataDictionary.getRandomData(user)
             writer.writerow([data[0], row[1]["reply_id"]])
@@ -223,7 +223,7 @@ def userReplyGen(dir, user, reply):
 def commentReplyGen(dir, comment, reply):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['comment_id', 'reply_id'])
         for row in reply.iterrows():
             data = dataDictionary.getRandomData(comment)
             writer.writerow([data[0], row[1]["reply_id"]])
@@ -232,40 +232,39 @@ def commentReplyGen(dir, comment, reply):
 def conceptCommentGen(dir, concept, comment):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['comment_id', 'concept_id'])
         for row in comment.iterrows():
             data = dataDictionary.getRandomData(concept)
-            writer.writerow([data[0], row[1]["comment_id"]])
+            writer.writerow([row[1]["comment_id"], data[0]])
 
 
 def conceptCourseGen(dir, concept, course):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
-        for row in course.iterrows():
-            for i in range(random.randint(1, 8)):
-                data = dataDictionary.getRandomData(concept)
-                writer.writerow([data[0], row[1]["course_id"]])
+        writer.writerow(['course_id', 'concept_id'])
+        for row in concept.iterrows():
+            data = dataDictionary.getRandomData(course)
+            writer.writerow([data[0], row[1]["concept_id"]])
 
 
 def conceptProblemGen(dir, concept, problem):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['problem_id', 'concept_id'])
         for row in concept.iterrows():
             for i in range(random.randint(0, 8)):
                 data = dataDictionary.getRandomData(problem)
-                writer.writerow([row[1]["concept_id"], data[0]])
+                writer.writerow([data[0], row[1]["concept_id"]])
 
 
 def conceptVideoGen(dir, concept, video):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a)
-        writer.writerow(GRAPH_HEADER)
+        writer.writerow(['video_id', 'concept_id'])
         for row in concept.iterrows():
             for i in range(random.randint(1, 3)):
                 data = dataDictionary.getRandomData(video)
-                writer.writerow([row[1]["concept_id"], data[0]])
+                writer.writerow([data[0], row[1]["concept_id"]])
 
 
 def conceptPrerequisiteGen(dir, concept):

@@ -44,10 +44,10 @@ USER_VIDEO_RESULT_FILENAME = RESULT_PATH + DOCUMENT_PATH + "/user_video.csv"
 USER_COMMENT_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/user_comment.csv"
 USER_REPLY_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/user_reply.csv"
 COMMENT_REPLY_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/comment_reply.csv"
-CONCEPT_COMMENT_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/concept_comment.csv"
-CONCEPT_COURSE_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/concept_course.csv"
-CONCEPT_PROBLEM_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/concept_problem.csv"
-CONCEPT_VIDEO_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/concept_video.csv"
+COMMENT_CONCEPT_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/comment_concept.csv"
+COURSE_CONCEPT_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/course_concept.csv"
+PROBLEM_CONCEPT_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/problem_concept.csv"
+VIDEO_CONCEPT_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/video_concept.csv"
 CONCEPT_PREREQUISITES_RESULT_FILENAME = RESULT_PATH + GRAPH_PATH + "/concept_prerequisites.csv"
 
 if __name__ == "__main__":
@@ -193,29 +193,29 @@ if __name__ == "__main__":
     dataGen.commentReplyGen(COMMENT_REPLY_RESULT_FILENAME, comment, reply)
     print("--- end Generating Comment_Reply ---\n\n")
 
-    print("--- start Generating Concept_Comment ---")
+    print("--- start Generating Comment_Concept ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
     comment = pd.read_csv(COMMENT_RESULT_FILENAME)
-    dataGen.conceptCommentGen(CONCEPT_COMMENT_RESULT_FILENAME, concept, comment)
-    print("--- end Generating Concept_Comment ---\n\n")
+    dataGen.conceptCommentGen(COMMENT_CONCEPT_RESULT_FILENAME, concept, comment)
+    print("--- end Generating Comment_Concept ---\n\n")
 
-    print("--- start Generating Concept_Course ---")
+    print("--- start Generating Course_Concept ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
     course = pd.read_csv(COURSE_RESULT_FILENAME)
-    dataGen.conceptCourseGen(CONCEPT_COURSE_RESULT_FILENAME, concept, course)
-    print("--- end Generating Concept_Course ---\n\n")
+    dataGen.conceptCourseGen(COURSE_CONCEPT_RESULT_FILENAME, concept, course)
+    print("--- end Generating Course_Concept ---\n\n")
 
-    print("--- start Generating Concept_Problem ---")
+    print("--- start Generating Problem_Concept ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
     problem = pd.read_csv(PROBLEM_RESULT_FILENAME)
-    dataGen.conceptProblemGen(CONCEPT_PROBLEM_RESULT_FILENAME, concept, problem)
-    print("--- end Generating Concept_Problem ---\n\n")
+    dataGen.conceptProblemGen(PROBLEM_CONCEPT_RESULT_FILENAME, concept, problem)
+    print("--- end Generating Problem_Concept ---\n\n")
 
-    print("--- start Generating Concept_Video ---")
+    print("--- start Generating Video_Concept ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
     video = pd.read_csv(VIDEO_RESULT_FILENAME)
-    dataGen.conceptVideoGen(CONCEPT_VIDEO_RESULT_FILENAME, concept, video)
-    print("--- end Generating Concept_Video ---\n\n")
+    dataGen.conceptVideoGen(VIDEO_CONCEPT_RESULT_FILENAME, concept, video)
+    print("--- end Generating Video_Concept ---\n\n")
 
     print("--- start Generating Concept_Prerequisite ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
