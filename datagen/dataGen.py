@@ -25,7 +25,7 @@ USER_VIDEO_HEADER = ['user_id', 'seq']
 def commentGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(COMMENT_HEADER)
         while total <= scale:
             writer.writerow([uuid.uuid1(), dataDictionary.getRandomData(row_data)[0], dataDictionary.getRandomTime()])
@@ -39,7 +39,7 @@ def conceptGen(dir, row_data, scale):
         writer.writerow(CONCEPT_HEADER)
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
-            writer.writerow([uuid.uuid1(), data[0], data[2]])
+            writer.writerow([uuid.uuid1(), data[0], data[1]])
             total = total + 1
 
 
@@ -50,14 +50,14 @@ def courseGen(dir, row_data, scale):
         writer.writerow(COURSE_HEADER)
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
-            writer.writerow([uuid.uuid1(), data[1], data[2], data[3], data[4]])
+            writer.writerow([uuid.uuid1(), data[0], data[1], data[2], data[3]])
             total = total + 1
 
 
 def problemGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(PROBLEM_HEADER)
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
@@ -71,7 +71,7 @@ def problemGen(dir, row_data, scale):
 def replyGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(REPLY_HEADER)
         while total <= scale:
             writer.writerow([uuid.uuid1(), dataDictionary.getRandomData(row_data)[0], dataDictionary.getRandomTime()])
@@ -81,7 +81,7 @@ def replyGen(dir, row_data, scale):
 def teacherGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(TEACHER_HEADER)
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
@@ -92,7 +92,7 @@ def teacherGen(dir, row_data, scale):
 def userGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(USER_HEADER)
         while total <= scale:
             school = dataDictionary.getRandomData(row_data)
@@ -114,7 +114,7 @@ def videoGen(dir, row_data, scale):
 
 def courseTeacherGen(dir, course, teacher):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['course_id', 'teacher_id'])
         for row in course.iterrows():
             data = dataDictionary.getRandomData(teacher)
@@ -123,19 +123,20 @@ def courseTeacherGen(dir, course, teacher):
 
 def courseFiledGen(dir, course, field):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(["course_id", "filed_list"])
         for row in course.iterrows():
             count = random.randint(1, 3)
             data = []
             for i in range(count):
+                dataDictionary.getRandomData(field)
                 data.append(dataDictionary.getRandomData(field)[1])
             writer.writerow([row[1]["course_id"], data])
 
 
 def courseCommentGen(dir, course, comment):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['course_id', 'comment_id'])
         for row in comment.iterrows():
             data = dataDictionary.getRandomData(course)
@@ -144,7 +145,7 @@ def courseCommentGen(dir, course, comment):
 
 def userCourseGen(dir, user, course):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(USER_COURSE_HEADER)
         for row in user.iterrows():
             count = random.randint(1, 8)
@@ -158,7 +159,7 @@ def userCourseGen(dir, user, course):
 
 def userProblemGen(dir, user, problem):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(USER_PROBLEM_HEADER)
         for row in user.iterrows():
             count = random.randint(0, 60)
@@ -176,7 +177,7 @@ def userProblemGen(dir, user, problem):
 
 def userVideoGen(dir, user, video):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(USER_VIDEO_HEADER)
         for row in user.iterrows():
             video_count = random.randint(1, 7)
@@ -204,7 +205,7 @@ def userVideoGen(dir, user, video):
 
 def userCommentGen(dir, user, comment):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['user_id', 'comment_id'])
         for row in comment.iterrows():
             data = dataDictionary.getRandomData(user)
@@ -213,7 +214,7 @@ def userCommentGen(dir, user, comment):
 
 def userReplyGen(dir, user, reply):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['user_id', 'reply_id'])
         for row in reply.iterrows():
             data = dataDictionary.getRandomData(user)
@@ -222,7 +223,7 @@ def userReplyGen(dir, user, reply):
 
 def commentReplyGen(dir, comment, reply):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['comment_id', 'reply_id'])
         for row in reply.iterrows():
             data = dataDictionary.getRandomData(comment)
@@ -231,7 +232,7 @@ def commentReplyGen(dir, comment, reply):
 
 def conceptCommentGen(dir, concept, comment):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['comment_id', 'concept_id'])
         for row in comment.iterrows():
             data = dataDictionary.getRandomData(concept)
@@ -240,7 +241,7 @@ def conceptCommentGen(dir, concept, comment):
 
 def conceptCourseGen(dir, concept, course):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['course_id', 'concept_id'])
         for row in concept.iterrows():
             data = dataDictionary.getRandomData(course)
@@ -249,7 +250,7 @@ def conceptCourseGen(dir, concept, course):
 
 def conceptProblemGen(dir, concept, problem):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['problem_id', 'concept_id'])
         for row in concept.iterrows():
             for i in range(random.randint(0, 8)):
@@ -259,7 +260,7 @@ def conceptProblemGen(dir, concept, problem):
 
 def conceptVideoGen(dir, concept, video):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(['video_id', 'concept_id'])
         for row in concept.iterrows():
             for i in range(random.randint(1, 3)):
@@ -269,7 +270,7 @@ def conceptVideoGen(dir, concept, video):
 
 def conceptPrerequisiteGen(dir, concept):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(GRAPH_HEADER)
         for row in concept.iterrows():
             for i in range(random.randint(1, 7)):

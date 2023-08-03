@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
     print("--- start Generating Course_Teacher ---")
     course = pd.read_csv(COURSE_RESULT_FILENAME)
-    teacher = pd.read_csv(TEACHER_RESULT_FILENAME)
+    teacher = pd.read_csv(TEACHER_RESULT_FILENAME, delimiter='|')
     dataGen.courseTeacherGen(COURSE_TEACHER_RESULT_FILENAME, course, teacher)
     print("--- end Generating Course_Teacher ---\n\n")
 
@@ -153,49 +153,49 @@ if __name__ == "__main__":
 
     print("--- start Generating Course_Comment ---")
     course = pd.read_csv(COURSE_RESULT_FILENAME)
-    comment = pd.read_csv(COMMENT_RESULT_FILENAME)
+    comment = pd.read_csv(COMMENT_RESULT_FILENAME, delimiter='|')
     dataGen.courseCommentGen(COURSE_COMMENT_RESULT_FILENAME, course, comment)
     print("--- end Generating Course_Comment ---\n\n")
 
     print("--- start Generating User_Course ---")
-    user = pd.read_csv(USER_RESULT_FILENAME)
+    user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
     course = pd.read_csv(COURSE_RESULT_FILENAME)
     dataGen.userCourseGen(USER_COURSE_RESULT_FILENAME, user, course)
     print("--- end Generating User_Course ---\n\n")
 
     print("--- start Generating User_Problem ---")
-    user = pd.read_csv(USER_RESULT_FILENAME)
-    problem = pd.read_csv(PROBLEM_RESULT_FILENAME)
+    user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
+    problem = pd.read_csv(PROBLEM_RESULT_FILENAME, delimiter='|')
     dataGen.userProblemGen(USER_PROBLEM_RESULT_FILENAME, user, problem)
     print("--- end Generating User_Problem ---\n\n")
-
+    #
     print("--- start Generating User_Video ---")
-    user = pd.read_csv(USER_RESULT_FILENAME)
+    user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
     video = pd.read_csv(VIDEO_RESULT_FILENAME)
     dataGen.userVideoGen(USER_VIDEO_RESULT_FILENAME, user, video)
     print("--- end Generating User_Video ---\n\n")
 
     print("--- start Generating User_Comment ---")
-    user = pd.read_csv(USER_RESULT_FILENAME)
-    comment = pd.read_csv(COMMENT_RESULT_FILENAME)
+    user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
+    comment = pd.read_csv(COMMENT_RESULT_FILENAME, delimiter='|')
     dataGen.userCommentGen(USER_COMMENT_RESULT_FILENAME, user, comment)
     print("--- end Generating User_Comment ---\n\n")
 
     print("--- start Generating User_Reply ---")
-    user = pd.read_csv(USER_RESULT_FILENAME)
-    reply = pd.read_csv(REPLY_RESULT_FILENAME)
+    user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
+    reply = pd.read_csv(REPLY_RESULT_FILENAME, delimiter='|')
     dataGen.userReplyGen(USER_REPLY_RESULT_FILENAME, user, reply)
     print("--- end Generating User_Reply ---\n\n")
 
     print("--- start Generating Comment_Reply ---")
-    comment = pd.read_csv(COMMENT_RESULT_FILENAME)
-    reply = pd.read_csv(REPLY_RESULT_FILENAME)
+    comment = pd.read_csv(COMMENT_RESULT_FILENAME, delimiter='|')
+    reply = pd.read_csv(REPLY_RESULT_FILENAME, delimiter='|')
     dataGen.commentReplyGen(COMMENT_REPLY_RESULT_FILENAME, comment, reply)
     print("--- end Generating Comment_Reply ---\n\n")
 
     print("--- start Generating Comment_Concept ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
-    comment = pd.read_csv(COMMENT_RESULT_FILENAME)
+    comment = pd.read_csv(COMMENT_RESULT_FILENAME, delimiter='|')
     dataGen.conceptCommentGen(COMMENT_CONCEPT_RESULT_FILENAME, concept, comment)
     print("--- end Generating Comment_Concept ---\n\n")
 
@@ -207,7 +207,7 @@ if __name__ == "__main__":
 
     print("--- start Generating Problem_Concept ---")
     concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
-    problem = pd.read_csv(PROBLEM_RESULT_FILENAME)
+    problem = pd.read_csv(PROBLEM_RESULT_FILENAME, delimiter='|')
     dataGen.conceptProblemGen(PROBLEM_CONCEPT_RESULT_FILENAME, concept, problem)
     print("--- end Generating Problem_Concept ---\n\n")
 
