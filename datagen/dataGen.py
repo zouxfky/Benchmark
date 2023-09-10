@@ -172,7 +172,7 @@ def userProblemGen(dir, user, problem):
                                          "attempts": random.randint(1, 50),
                                          "score": random.randint(0, 100),
                                          "submit_time": str(dataDictionary.getRandomTime())})
-                writer.writerow([row[1]["user_id"], problem_list])
+            writer.writerow([row[1]["user_id"], problem_list])
 
 
 def userVideoGen(dir, user, video):

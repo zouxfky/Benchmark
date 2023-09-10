@@ -6,8 +6,8 @@ import datagen.dataGen as dataGen
 import argparse
 import sys
 
-SCALE = {"comment": 15347.6069, "concept": 1165.5795, "course": 6.9122, "problem": 4487.0303, "reply": 605.1389,
-         "teacher": 31.1151, "user": 6088.2889, "video": 108.9232}
+SCALE = {"comment": 4, "concept": 1165.5795, "course": 6.9122, "problem": 4487.0303, "reply": 2,
+         "teacher": 8.9122, "user": 1, "video": 108.9232}
 resources = ['concept', 'course', 'problem', 'school', 'teacher', 'video', 'course_teacher', 'course_school',
              'course_field', 'concept_course', 'concept_problem', 'concept_video', 'concept_prerequisites']
 RADIX = 547
