@@ -124,7 +124,7 @@ def courseTeacherGen(dir, course, teacher):
 def courseFiledGen(dir, course, field):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a, delimiter='|')
-        writer.writerow(["course_id", "filed_list"])
+        writer.writerow(["course_id", "field_list"])
         for row in course.iterrows():
             count = random.randint(1, 3)
             data = []
