@@ -105,12 +105,12 @@ if __name__ == "__main__":
     print("--- end Generating Comment ---\n\n")
 
     print("--- start Generating Concept ---")
-    row_data = pd.read_csv(CONCEPT_ROW_FILENAME)
+    row_data = pd.read_csv(CONCEPT_ROW_FILENAME, delimiter='|')
     dataGen.conceptGen(CONCEPT_RESULT_FILENAME, row_data, SCALE["concept"])
     print("--- end Generating Concept ---\n\n")
 
     print("--- start Generating Course ---")
-    row_data = pd.read_csv(COURSE_ROW_FILENAME)
+    row_data = pd.read_csv(COURSE_ROW_FILENAME, delimiter='|')
     dataGen.courseGen(COURSE_RESULT_FILENAME, row_data, SCALE["course"])
     print("--- end Generating Course ---\n\n")
 
@@ -140,26 +140,26 @@ if __name__ == "__main__":
     print("--- end Generating Video ---\n\n")
 
     print("--- start Generating Course_Teacher ---")
-    course = pd.read_csv(COURSE_RESULT_FILENAME)
+    course = pd.read_csv(COURSE_RESULT_FILENAME, delimiter='|')
     teacher = pd.read_csv(TEACHER_RESULT_FILENAME, delimiter='|')
     dataGen.courseTeacherGen(COURSE_TEACHER_RESULT_FILENAME, course, teacher)
     print("--- end Generating Course_Teacher ---\n\n")
 
     print("--- start Generating Course_Field ---")
-    course = pd.read_csv(COURSE_RESULT_FILENAME)
+    course = pd.read_csv(COURSE_RESULT_FILENAME, delimiter='|')
     field = pd.read_csv(FIELD_ROW_FILENAME)
     dataGen.courseFiledGen(COURSE_FIELD_RESULT_FILENAME, course, field)
     print("--- end Generating Course_Field ---\n\n")
 
     print("--- start Generating Course_Comment ---")
-    course = pd.read_csv(COURSE_RESULT_FILENAME)
+    course = pd.read_csv(COURSE_RESULT_FILENAME, delimiter='|')
     comment = pd.read_csv(COMMENT_RESULT_FILENAME, delimiter='|')
     dataGen.courseCommentGen(COURSE_COMMENT_RESULT_FILENAME, course, comment)
     print("--- end Generating Course_Comment ---\n\n")
 
     print("--- start Generating User_Course ---")
     user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
-    course = pd.read_csv(COURSE_RESULT_FILENAME)
+    course = pd.read_csv(COURSE_RESULT_FILENAME, delimiter='|')
     dataGen.userCourseGen(USER_COURSE_RESULT_FILENAME, user, course)
     print("--- end Generating User_Course ---\n\n")
 
@@ -168,7 +168,7 @@ if __name__ == "__main__":
     problem = pd.read_csv(PROBLEM_RESULT_FILENAME, delimiter='|')
     dataGen.userProblemGen(USER_PROBLEM_RESULT_FILENAME, user, problem)
     print("--- end Generating User_Problem ---\n\n")
-    #
+
     print("--- start Generating User_Video ---")
     user = pd.read_csv(USER_RESULT_FILENAME, delimiter='|')
     video = pd.read_csv(VIDEO_RESULT_FILENAME)
@@ -194,30 +194,30 @@ if __name__ == "__main__":
     print("--- end Generating Comment_Reply ---\n\n")
 
     print("--- start Generating Comment_Concept ---")
-    concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
+    concept = pd.read_csv(CONCEPT_RESULT_FILENAME, delimiter='|')
     comment = pd.read_csv(COMMENT_RESULT_FILENAME, delimiter='|')
     dataGen.conceptCommentGen(COMMENT_CONCEPT_RESULT_FILENAME, concept, comment)
     print("--- end Generating Comment_Concept ---\n\n")
 
     print("--- start Generating Course_Concept ---")
-    concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
-    course = pd.read_csv(COURSE_RESULT_FILENAME)
+    concept = pd.read_csv(CONCEPT_RESULT_FILENAME, delimiter='|')
+    course = pd.read_csv(COURSE_RESULT_FILENAME, delimiter='|')
     dataGen.conceptCourseGen(COURSE_CONCEPT_RESULT_FILENAME, concept, course)
     print("--- end Generating Course_Concept ---\n\n")
 
     print("--- start Generating Problem_Concept ---")
-    concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
+    concept = pd.read_csv(CONCEPT_RESULT_FILENAME, delimiter='|')
     problem = pd.read_csv(PROBLEM_RESULT_FILENAME, delimiter='|')
     dataGen.conceptProblemGen(PROBLEM_CONCEPT_RESULT_FILENAME, concept, problem)
     print("--- end Generating Problem_Concept ---\n\n")
 
     print("--- start Generating Video_Concept ---")
-    concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
+    concept = pd.read_csv(CONCEPT_RESULT_FILENAME, delimiter='|')
     video = pd.read_csv(VIDEO_RESULT_FILENAME)
     dataGen.conceptVideoGen(VIDEO_CONCEPT_RESULT_FILENAME, concept, video)
     print("--- end Generating Video_Concept ---\n\n")
 
     print("--- start Generating Concept_Prerequisite ---")
-    concept = pd.read_csv(CONCEPT_RESULT_FILENAME)
+    concept = pd.read_csv(CONCEPT_RESULT_FILENAME, delimiter='|')
     dataGen.conceptPrerequisiteGen(CONCEPT_PREREQUISITES_RESULT_FILENAME, concept)
     print("--- end Generating Concept_Prerequisite ---\n\n")

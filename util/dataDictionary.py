@@ -96,7 +96,7 @@ def getRandomTime():
 
 
 def getNextTime(start):
-    differ = random.randint(10000, 10000000)
+    differ = random.randint(1, 600)
     next_time = start + datetime.timedelta(seconds=differ)
     return next_time
 

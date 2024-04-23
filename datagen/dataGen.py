@@ -3,6 +3,7 @@ import uuid
 import random
 import util.dataDictionary as dataDictionary
 import numpy as np
+import json
 
 COMMENT_HEADER = ['comment_id', 'text', 'create_time']
 CONCEPT_HEADER = ['concept_id', 'concept_name', 'context']
@@ -35,7 +36,7 @@ def commentGen(dir, row_data, scale):
 def conceptGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(CONCEPT_HEADER)
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
@@ -46,8 +47,12 @@ def conceptGen(dir, row_data, scale):
 def courseGen(dir, row_data, scale):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         total = 0
-        writer = csv.writer(a)
+        writer = csv.writer(a, delimiter='|')
         writer.writerow(COURSE_HEADER)
+        # for index, row in row_data.iterrows():
+        #     resource = eval(row['resource'])
+        #     row_data.at[index, 'resource'] = resource
+        # row_data.to_csv('test.csv', index=False, sep='|', encoding='utf-8')
         while total <= scale:
             data = dataDictionary.getRandomData(row_data)
             writer.writerow([uuid.uuid1(), data[0], data[1], data[2], data[3]])
@@ -179,28 +184,28 @@ def userVideoGen(dir, user, video):
     with open(dir, 'w', encoding='UTF8', newline='') as a:
         writer = csv.writer(a, delimiter='|')
         writer.writerow(USER_VIDEO_HEADER)
-        for row in user.iterrows():
-            video_count = random.randint(1, 7)
-            segment_count = random.randint(1, 5)
-            segment_list = []
+        for index, row in user.iterrows():
+            video_count = random.randint(1, 20)
             video_list = []
             if video_count == 0:
                 continue
             for x in range(video_count):
+                segment_list = []
                 data = dataDictionary.getRandomData(video)
                 start_time = dataDictionary.getRandomTime()
                 time = start_time
-                for y in range(segment_count):
-                    start_point = round(random.uniform(0, 2000), 1)
-                    end_point = round(start_point + random.uniform(0, 200))
-                    if y != 0:
-                        time = dataDictionary.getNextTime(time)
+                start = eval(data[2])
+                end = eval(data[3])
+                for seq_index, item in enumerate(start):
+                    start_point = start[seq_index]
+                    end_point = end[seq_index]
+                    time = dataDictionary.getNextTime(time)
                     segment_list.append({"start_point": start_point,
                                          "end_point": end_point,
                                          "speed": random.choice([0.5, 1.0, 1.5, 2.0]),
                                          "local_start_time": time.timestamp()})
-                    video_list.append({"video_id": data[0], "seq": segment_list})
-            writer.writerow([row[1]["user_id"], video_list])
+                video_list.append({"video_id": data[0], "seq": segment_list})
+            writer.writerow([row["user_id"], video_list])
 
 
 def userCommentGen(dir, user, comment):
