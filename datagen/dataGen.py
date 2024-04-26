@@ -185,7 +185,7 @@ def userVideoGen(dir, user, video):
         writer = csv.writer(a, delimiter='|')
         writer.writerow(USER_VIDEO_HEADER)
         for index, row in user.iterrows():
-            video_count = random.randint(1, 20)
+            video_count = random.randint(1, 5)
             video_list = []
             if video_count == 0:
                 continue
